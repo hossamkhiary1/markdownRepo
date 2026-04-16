@@ -7,9 +7,9 @@ The \DoIp.cpp\ module provides the core implementation of the **Diagnostic commu
 
 ## 2. Architecture & Class Diagram
 
-The architecture is heavily modularized. The primary \DoIp\ class manages the overarching lifecycle, server configuration, UDP communication, and thread pools. Each TCP diagnostic connection spawns a dedicated \DoIpClientInterface\ managing its specific session state, inactivity timers, and message dispatching.
+The architecture is heavily modularized. The primary `DoIp` class manages the overarching lifecycle, server configuration, UDP communication, and thread pools. Each TCP diagnostic connection spawns a dedicated `DoIpClientInterface` managing its specific session state, inactivity timers, and message dispatching.
 
-\\mermaid
+```mermaid
 classDiagram
     class DoIp {
         -TcpInterfaceImpl m_tcpInterface
@@ -37,9 +37,7 @@ classDiagram
     DoIp --> VehicleIdentifierHandler : Aggregates VIN Data
     DoIp --> DoIpConfigManager : Fetches Configuration
     DoIpClientInterface --> DoIpPayloadDispatcher : Dispatches Requests
-\
----
-
+```
 ## 3. Sequence Diagrams
 
 ### 3.1. Server Startup and Sub-Systems Initialization
