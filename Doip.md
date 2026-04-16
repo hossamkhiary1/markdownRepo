@@ -43,7 +43,7 @@ classDiagram
 ### 3.1. Server Startup and Sub-Systems Initialization
 The server initialization process brings up the TCP and UDP network interfaces and starts background workers for connection management and vehicle announcements.
 
-\\mermaid
+```mermaid
 sequenceDiagram
     participant App as Application
     participant DoIp as DoIp Server
@@ -64,11 +64,11 @@ sequenceDiagram
         end
     end
     DoIp-->>App: true (Server Running)
-\
+```
 ### 3.2. Diagnostic Tester Connection & Message Dispatching
 When a new tester connects, a \DoIpClientInterface\ is spawned. It runs concurrent threads for RX and TX to avoid blocking the main server.
 
-\\mermaid
+```mermaid
 sequenceDiagram
     participant Tester as Diagnostic Tester
     participant Accept as DoIp::tcpClientAcceptanceFunction
@@ -95,7 +95,7 @@ sequenceDiagram
     
     Client->>Client: createDoIpResponse()
     Client-->>Tester: Transmits Ack/Response via runTransmit()
-\
+```
 ---
 
 ## 4. API Reference
