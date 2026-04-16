@@ -122,4 +122,21 @@ Serves as the central manager for the DoIP stack.
 
 ---
 
+### 4.2. `DoIpClientInterface` Class
+Handles an individual TCP client connection, operating its own lifecycle, timers, and state machine.
 
+#### **Client Lifecycle**
+* **`void start()`** Initializes state to `INIT` and launches dedicated receive and transmit threads.
+* **`void stop()`** Safely tears down the client interface.
+
+#### **Reception and Dispatch**
+* **`ReceptionAction receiveDoIpMessage(...)`** Parses incoming DoIP headers from the socket.
+* **`void handleDoIpReceivedRequest(...)`** Dispatches parsed requests to their target implementation handler.
+* **`void createDoIpResponse(...)`** Constructs an outbound DoIP message array.
+
+#### **ISO-13400 Timer Controls**
+* **`void startInitialInactivityTimer()` / `void stopInitialInactivityTimer()`** Manages the initial DoIP timer.
+* **`void startGeneralInactivityTimer()` / `void stopGeneralInactivityTimer()`** Manages the general inactivity timer.
+
+#### **Security & Resource Checks**
+* **`bool isAddressUsed(uint16_t logicalAddress)`** Thread-safe check across the server to prevent concurrent assignments.
