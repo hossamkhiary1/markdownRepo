@@ -100,25 +100,25 @@ sequenceDiagram
 
 ## 4. API Reference
 
-### 4.1. Core \DoIp\ Class
+### 4.1. Core `DoIp` Class
 Serves as the central manager for the DoIP stack.
 
 #### **Constructors & Lifecycle**
-* **\DoIp()\** Constructs a new \DoIp\ server instance and fetches network and protocol settings.
-* **\~DoIp()\** Destructs the \DoIp\ server instance and ensures graceful shutdown.
-* **\ool start()\** Starts the DoIP Server TCP and UDP interfaces and spawns worker threads.
-* **\ool stop()\** Stops the DoIP Server, closes all active connections, and joins threads.
+* **`DoIp()`** Constructs a new `DoIp` server instance and fetches network and protocol settings.
+* **`~DoIp()`** Destructs the `DoIp` server instance and ensures graceful shutdown.
+* **`bool start()`** Starts the DoIP Server TCP and UDP interfaces and spawns worker threads.
+* **`bool stop()`** Stops the DoIP Server, closes all active connections, and joins threads.
 
 #### **Worker Threads (Private)**
-* **\oid tcpClientAcceptanceFunction()\** Continuously accepts incoming TCP client connections.
-* **\oid udpListeningFunction()\** Listens for incoming UDP messages.
-* **\oid udpTransmitFunction()\** Processes and transmits pending UDP responses.
-* **\oid announcementTransmitFunction()\** Periodically broadcasts Vehicle Identification Response messages.
+* **`void tcpClientAcceptanceFunction()`** Continuously accepts incoming TCP client connections.
+* **`void udpListeningFunction()`** Listens for incoming UDP messages.
+* **`void udpTransmitFunction()`** Processes and transmits pending UDP responses.
+* **`void announcementTransmitFunction()`** Periodically broadcasts Vehicle Identification Response messages.
 
 #### **Connection Management**
-* **\oid handleDisconnectedClients()\** Cleans up disconnected TCP clients.
-* **\oid removeDisconnectedClient(SOCKET clientSocket)\** Safely halts threads and removes a specifically disconnected socket.
-* **\oid notifyClientDisconnected()\** Wakes the acceptance thread when maximum capacity was reached.
+* **`void handleDisconnectedClients()`** Cleans up disconnected TCP clients.
+* **`void removeDisconnectedClient(SOCKET clientSocket)`** Safely halts threads and removes a specifically disconnected socket.
+* **`void notifyClientDisconnected()`** Wakes the acceptance thread when maximum capacity was reached.
 
 ---
 
