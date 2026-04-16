@@ -122,21 +122,4 @@ Serves as the central manager for the DoIP stack.
 
 ---
 
-### 4.2. \DoIpClientInterface\ Class
-Handles an individual TCP client connection, operating its own lifecycle, timers, and state machine.
 
-#### **Client Lifecycle**
-* **\oid start()\** Initializes state to \INIT\ and launches dedicated receive and transmit threads.
-* **\oid stop()\** Safely tears down the client interface.
-
-#### **Reception and Dispatch**
-* **\ReceptionAction receiveDoIpMessage(...)\** Parses incoming DoIP headers from the socket.
-* **\oid handleDoIpReceivedRequest(...)\** Dispatches parsed requests to their target implementation handler.
-* **\oid createDoIpResponse(...)\** Constructs an outbound DoIP message array.
-
-#### **ISO-13400 Timer Controls**
-* **\oid startInitialInactivityTimer()\ / \stopInitialInactivityTimer()\** Manages the initial DoIP timer.
-* **\oid startGeneralInactivityTimer()\ / \stopGeneralInactivityTimer()\** Manages the general inactivity timer.
-
-#### **Security & Resource Checks**
-* **\ool isAddressUsed(uint16_t logicalAddress)\** Thread-safe check across the server to prevent concurrent assignments.
